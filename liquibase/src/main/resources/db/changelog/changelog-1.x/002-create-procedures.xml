@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2" author="mdadah">
+        <createProcedure
+                dbms="postgresql"
+                schemaName="public"
+                procedureName="update_views">
+            CREATE
+            OR REPLACE FUNCTION sp_get_person()
+            RETURNS TABLE(id int, first_name varchar, last_name varchar, birth_date date) AS $$
+            BEGIN
+            RETURN QUERY SELECT * FROM person;
+            END $$
+            LANGUAGE plpgsql;
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>

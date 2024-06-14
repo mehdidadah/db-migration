@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="8" author="mdadah">
+
+        <insert tableName="person">
+            <column name="email" value="mehdi.dadah@gmail.com"/>
+            <column name="title" value="M"/>
+        </insert>
+        <rollback>
+            <delete tableName="person">
+                <where>email='mehdi.dadah@gmail.com' AND title='M'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="9" author="mdadah">
+        <tagDatabase tag="8" />
+    </changeSet>
+</databaseChangeLog>
